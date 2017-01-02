@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="SexMapper">
+
+	<select id="FindSex" resultType="com.model.Sex">
+		select * from sex
+	</select>
+	
+	<select id="FindSexById" resultType="com.model.Sex" parameterType="com.model.Sex">
+		select * from sex s where s.SexId = #{id} 
+	</select>
+	
+	<insert id="AddSex" parameterType="String" useGeneratedKeys="true" keyProperty="SwxId">
+		insert into sex (SexType) values (#{SexType})
+	</insert>
+	
+	<delete id="DelSex" parameterType="com.model.Sex">
+		delete from sex where SexId = #{sexId}
+	</delete>
+	
+	<update id="UpdateSex" parameterType="com.model.Sex">
+		update from sex set 
+			SexType = #{SexType} 
+		where SexId = #{SexId}
+	</update>
+</mapper>
