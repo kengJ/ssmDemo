@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   
+       xmlns:context="http://www.springframework.org/schema/context"  
+       xmlns:mvc="http://www.springframework.org/schema/mvc"  
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd  
+       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd"> 
+    <!-- 启用SPRING MVC注解 -->
+    <mvc:annotation-driven>
+    </mvc:annotation-driven>
+    
+    <!-- 使用基于注解的方式注入java bean -->
+    <context:component-scan base-package="com.*"></context:component-scan>
+    
+    <!-- 配置jsp的访问路径 -->
+    <bean id="Resolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/page/"></property>
+        <property name="suffix" value=".jsp"></property>
+    </bean>
+    <mvc:annotation-driven/>
+    <mvc:resources mapping="/static/css/**" location="/WEB-INF/static/css/" />
+    <mvc:resources mapping="/static/fonts/**" location="/WEB-INF/static/fonts/" />
+    <mvc:resources mapping="/static/img/**" location="/WEB-INF/static/img/" />
+    <mvc:resources mapping="/static/js/**" location="/WEB-INF/static/js/" />
+    <mvc:default-servlet-handler/>
+    
+    <!-- <mvc:interceptors>
+		<mvc:interceptor>
+		<mvc:mapping path="/**"/>
+		<mvc:exclude-mapping path="/login/login.do"/>
+		<mvc:exclude-mapping path="/sql/add10.do"/>
+		<bean class="com.interceptor.LoginInterceptor" />
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/insterceptorTest.do"/>
+			<bean class="com.insterceptor.TestInterceptor"></bean>
+		</mvc:interceptor>
+    </mvc:interceptors> -->
+</beans>
