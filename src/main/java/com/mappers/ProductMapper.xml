@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ProductMapper">
+    <parameterMap type="com.model.Product" id="ProductMap"></parameterMap>
+    <resultMap type="com.model.Product" id="Product"></resultMap>
+    <sql id="feild">(pname,pnumber,ptype,pdate)</sql>
+    
+    <insert id="insertProductSql" parameterMap="ProductMap">
+        insert into t_product <include refid="feild"/> values
+        (#{pname},#{pnumber},#{ptype},#{pdate})
+    </insert>
+</mapper>

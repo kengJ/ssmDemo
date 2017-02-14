@@ -1,6 +1,7 @@
 package com.dao;
 
 import java.util.List;
+
 import com.model.Admin;
 
 public interface AdminDao {

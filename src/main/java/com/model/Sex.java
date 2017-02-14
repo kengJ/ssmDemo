@@ -4,6 +4,9 @@ import java.io.Serializable;
 
 public class Sex implements Serializable{
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = -6388409903697797504L;
 	private Integer SexId;
 	private String SexType;
