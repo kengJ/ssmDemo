@@ -22,6 +22,7 @@
     <mvc:resources mapping="/static/fonts/**" location="/WEB-INF/static/fonts/" />
     <mvc:resources mapping="/static/img/**" location="/WEB-INF/static/img/" />
     <mvc:resources mapping="/static/js/**" location="/WEB-INF/static/js/" />
+    <mvc:resources mapping="/static/plug/**" location="/WEB-INF/static/plug/" />
     <mvc:default-servlet-handler/>
     
     <!-- <mvc:interceptors>

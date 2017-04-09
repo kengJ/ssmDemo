@@ -4,6 +4,8 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.model.Admin;
 import com.service.AdminService;
 
@@ -36,5 +38,12 @@ public class AdminController {
 	@RequestMapping(value="updateAdmin",method=RequestMethod.PUT)
 	public boolean UpdateAdmin(Admin admin){
 		return adminService.UpdateAdmin(admin);
+	}
+	
+	@RequestMapping(value="login",method=RequestMethod.POST)
+	@ResponseBody
+	public String LoginAdmin(Admin admin){
+		System.out.println(admin.getAdminName());
+		return "redirect:/hello";
 	}
 }
