@@ -11,4 +11,5 @@ public interface AdminService {
 	boolean AddAdmin(Admin admin);
 	boolean DelAdmin(Integer AdminId);
 	boolean UpdateAdmin(Admin admin);
+	boolean LoginAdmin(Admin admin);
 }

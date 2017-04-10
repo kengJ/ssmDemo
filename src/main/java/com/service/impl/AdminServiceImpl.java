@@ -38,4 +38,20 @@ public class AdminServiceImpl implements AdminService{
 		return adminDao.UpdateAdmin(admin);
 	}
 
+	@Override
+	public boolean LoginAdmin(Admin admin) {
+		List<Admin> result = adminDao.LoginAdminCheck(admin);
+		if(result==null){
+			return false;
+		}
+		Admin target = result.get(0);
+		if(target==null){
+			return false;
+		}else if(target.getAdminPassword().equals(admin.getAdminPassword())){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 }

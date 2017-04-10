@@ -11,6 +11,10 @@
 		select * from admin where AdminId = #{id}
 	</select>
 	
+	<select id="FindAdminByAdminName" resultType="com.model.Admin">
+		select * from admin where AdminId = #{AdminName}
+	</select>
+	
 	<insert id="AddAdmin" parameterType="com.model.Admin">
 		insert into admin (
 			AdminName,

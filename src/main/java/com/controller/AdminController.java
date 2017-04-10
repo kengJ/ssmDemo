@@ -1,11 +1,13 @@
 package com.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.model.Admin;
 import com.service.AdminService;
 
@@ -42,8 +44,19 @@ public class AdminController {
 	
 	@RequestMapping(value="login",method=RequestMethod.POST)
 	@ResponseBody
-	public String LoginAdmin(Admin admin){
-		System.out.println(admin.getAdminName());
-		return "redirect:/hello";
+	public Map<String, Object> LoginAdmin(Admin admin){
+		Map<String,Object> result = new HashMap<String,Object>();
+		//System.out.println(admin.getAdminName());
+		if(adminService.LoginAdmin(admin)){
+			result.put("key", true);
+			result.put("message", "登录成功");
+		}else{
+			result.put("key", false);
+			result.put("message", "登录失败");
+			admin.setAdminPassword("");
+		}
+		result.put("admin", admin);
+		
+		return result;
 	}
 }

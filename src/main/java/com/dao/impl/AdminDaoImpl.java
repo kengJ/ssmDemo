@@ -57,4 +57,9 @@ public class AdminDaoImpl implements AdminDao{
 		}
 	}
 
+	@Override
+	public List<Admin> LoginAdminCheck(Admin admin) {
+		return sqlSessionTemplate.selectList("AdminMapper.FindAdminByAdminName",admin);
+	}
+
 }

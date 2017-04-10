@@ -11,4 +11,5 @@ public interface AdminDao {
 	boolean AddAdmin(Admin admin);
 	boolean DelAdmin(Integer AdminId);
 	boolean UpdateAdmin(Admin admin);
+	List<Admin> LoginAdminCheck(Admin admin);
 }
