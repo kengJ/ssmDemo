@@ -5,13 +5,15 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.model.Admin;
 import com.service.AdminService;
 
-@Controller
+@Controller	
+@RequestMapping("/Admin")
 public class AdminController {
 
 	@Resource
@@ -58,5 +60,18 @@ public class AdminController {
 		result.put("admin", admin);
 		
 		return result;
+	}
+	
+	@RequestMapping(value="toAdmin/{AdminName}/{AdminPassword}")
+	public String toAdmin(@PathVariable String AdminName,@PathVariable String AdminPassword){
+		Admin admin = new Admin();
+		admin.setAdminName(AdminName);
+		admin.setAdminPassword(AdminPassword);
+		System.out.println(admin);
+		if(adminService.LoginAdmin(admin)){
+			return "admin/AdminTest";
+		}else{
+			return "redirect:/index.html";
+		}
 	}
 }

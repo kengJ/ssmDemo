@@ -20,7 +20,7 @@
     <!-- 配置jsp的访问路径 -->
     <bean id="Resolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/page/"></property>
-        <property name="suffix" value=".jsp"></property>
+        <property name="suffix" value=".html"></property>
     </bean>
     <mvc:annotation-driven/>
     <mvc:resources mapping="/static/css/**" location="/WEB-INF/static/css/" />
