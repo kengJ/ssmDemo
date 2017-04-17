@@ -1,14 +1,13 @@
 package com.controller;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import com.model.Admin;
 import com.service.AdminService;
 
@@ -19,59 +18,37 @@ public class AdminController {
 	@Resource
 	private AdminService adminService;
 	
-	@RequestMapping(value="findAdmin",method=RequestMethod.POST)
-	public String FindAdmin(){
-		return adminService.FindAdmin().toString();
+	@RequestMapping(value="GetList",method=RequestMethod.POST)
+	@ResponseBody
+	public List<Admin> FindAdmin(){
+		return adminService.FindAdmin();
 	}
 	
-	@RequestMapping(value="findUserById",method=RequestMethod.POST)
-	public String FindUserById(Integer UserId){
-		return adminService.FineAdminById(UserId).toString();
-	}
-	
-	@RequestMapping(value="addAdmin",method=RequestMethod.PUT)
+	@RequestMapping(value="Add",method=RequestMethod.PUT)
 	public boolean AddAdmin(Admin admin){
 		return adminService.AddAdmin(admin);
 	}
 	
-	@RequestMapping(value="delAdmin",method=RequestMethod.DELETE)
+	@RequestMapping(value="Delete",method=RequestMethod.DELETE)
 	public boolean DelAdmin(Integer AdminId){
 		return adminService.DelAdmin(AdminId);
 	}
 	
-	@RequestMapping(value="updateAdmin",method=RequestMethod.PUT)
+	@RequestMapping(value="Edit",method=RequestMethod.PUT)
 	public boolean UpdateAdmin(Admin admin){
 		return adminService.UpdateAdmin(admin);
 	}
 	
-	@RequestMapping(value="login",method=RequestMethod.POST)
-	@ResponseBody
-	public Map<String, Object> LoginAdmin(Admin admin){
-		Map<String,Object> result = new HashMap<String,Object>();
-		//System.out.println(admin.getAdminName());
+	@RequestMapping(value="Login",method=RequestMethod.POST)
+	public ModelAndView LoginAdmin(Admin admin){
+		ModelAndView mv =new ModelAndView();
 		if(adminService.LoginAdmin(admin)){
-			result.put("key", true);
-			result.put("message", "登录成功");
+			mv.setViewName("Admin/index");
+			mv.addObject("admininfo", admin);
 		}else{
-			result.put("key", false);
-			result.put("message", "登录失败");
-			admin.setAdminPassword("");
+			mv.setViewName("redirect:/index");
 		}
-		result.put("admin", admin);
-		
-		return result;
+		return mv;
 	}
 	
-	@RequestMapping(value="toAdmin/{AdminName}/{AdminPassword}")
-	public String toAdmin(@PathVariable String AdminName,@PathVariable String AdminPassword){
-		Admin admin = new Admin();
-		admin.setAdminName(AdminName);
-		admin.setAdminPassword(AdminPassword);
-		System.out.println(admin);
-		if(adminService.LoginAdmin(admin)){
-			return "admin/AdminTest";
-		}else{
-			return "redirect:/index.html";
-		}
-	}
 }
