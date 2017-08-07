@@ -1,6 +1,8 @@
 # ssmDemo
 主要实现前后段分离
 
+struct2+mybatis+spring
+
 #管理模块(admin)<br>
 1.登录功能(/Admin/Login)<br>
 2.修改功能(/Admin/Edit)<br>
